@@ -1,9 +1,7 @@
-import {
-   Menu as MenuIcon, Bell,
-} from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { getSocket, connectSocket } from '../lib/socket';
+import { connectSocket } from '../lib/socket';
 import { useNotificationStore } from '../store/notificationStore';
 import { useAuthStore } from '../store/authStore';
 import {
