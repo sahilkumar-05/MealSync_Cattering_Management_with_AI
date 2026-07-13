@@ -13,7 +13,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 @WebSocketGateway({
   cors: {
-    origin: ['http://localhost:5173', 'https://meal-sync-cattering-management-with-theta.vercel.app/login'],
+    origin: ['http://localhost:5173', 'https://meal-sync-cattering-management-with-theta.vercel.app'],
   },
 })
 export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisconnect {
