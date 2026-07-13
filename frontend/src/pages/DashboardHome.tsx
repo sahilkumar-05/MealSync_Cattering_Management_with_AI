@@ -24,13 +24,11 @@ import { getIngredients } from '../api/ingredients';
 
 import { getWasteByDish } from '../api/waste';
 import { getOrders } from '../api/procurement';
-import { finalizeOrders } from '../api/mealOrders';
 import type { Menu, Ingredient } from '../types';
 import {
   AlertTriangle,
   ClipboardCheck,
   UtensilsCrossed,
-  Package,
   PieChart as PieChartIcon,
   Boxes,
   Gauge,
@@ -49,8 +47,6 @@ const CATEGORY_COLORS = ['#14b8a6', '#3b82f6', '#f59e0b', '#8b5cf6', '#ef4444', 
 
 export default function DashboardHome() {
   const user = useAuthStore((state) => state.user);
-  const isChefOrAdmin =
-    user?.role?.toLowerCase() === 'chef' || user?.role?.toLowerCase() === 'admin';
 
   const [stats, setStats] = useState({
     activeMenus: 0,
@@ -62,9 +58,6 @@ export default function DashboardHome() {
   const [menus, setMenus] = useState<Menu[]>([]);
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const [finalizeDate, setFinalizeDate] = useState('');
-  const [finalizing, setFinalizing] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -98,25 +91,6 @@ export default function DashboardHome() {
     };
     load();
   }, []);
-
-  const handleFinalize = async () => {
-    if (!finalizeDate) {
-      alert('Select a service date first');
-      return;
-    }
-    setFinalizing(true);
-    try {
-      console.log('[finalize] calling API with date:', finalizeDate);
-      const result = await finalizeOrders(finalizeDate);
-      console.log('[finalize] API response:', result);
-      alert(`Finalized ${result.totalOrders} orders for ${result.serviceDate}`);
-    } catch (err: any) {
-      console.error('[finalize] error:', err);
-      alert(err.response?.data?.message || 'Failed to finalize');
-    } finally {
-      setFinalizing(false);
-    }
-  };
 
   const greetingName = user?.name?.split(' ')[0] || '';
 
@@ -247,7 +221,7 @@ export default function DashboardHome() {
                     fontSize: 13,
                     boxShadow: '0 10px 30px rgba(15,23,42,0.08)',
                   }}
-                  formatter={(value: number) => [`${value} kg`, 'Wasted']}
+                  formatter={(value: any) => [`${value} kg`, 'Wasted']}
                 />
                 <Bar dataKey="totalWastedKg" radius={[8, 8, 0, 0]}>
                   {wasteData.map((_, index) => (
