@@ -3,7 +3,7 @@ import { create } from 'zustand';
 export interface Notification {
   id: string;
   message: string;
-  type: 'low-stock' | 'order-final';
+  type: 'low-stock' | 'order-final' | 'new-order';
   timestamp: number;
 }
 
