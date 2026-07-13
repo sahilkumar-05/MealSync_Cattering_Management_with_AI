@@ -7,7 +7,13 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  app.enableCors();
+  app.enableCors({
+  origin: [
+    'http://localhost:5173',
+    'https://your-app-name.vercel.app', // baad mein Vercel URL milne ke baad update karoge
+  ],
+  credentials: true,
+});
 
   const config = new DocumentBuilder()
     .setTitle('MealSync API')

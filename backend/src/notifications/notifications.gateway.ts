@@ -12,7 +12,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 @WebSocketGateway({
-  cors: { origin: '*' },
+  cors: {
+    origin: ['http://localhost:5173', 'https://your-app-name.vercel.app'],
+  },
 })
 export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
