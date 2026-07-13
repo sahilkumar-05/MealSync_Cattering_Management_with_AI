@@ -10,7 +10,7 @@ async function bootstrap() {
   app.enableCors({
   origin: [
     'http://localhost:5173',
-    'https://meal-sync-cattering-management-with-theta.vercel.app/login', // baad mein Vercel URL milne ke baad update karoge
+    'https://meal-sync-cattering-management-with-theta.vercel.app', // baad mein Vercel URL milne ke baad update karoge
   ],
   credentials: true,
 });
