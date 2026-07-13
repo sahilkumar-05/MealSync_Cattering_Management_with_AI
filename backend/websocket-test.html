@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h2>WebSocket Test</h2>
+  <div id="messages"></div>
+
+  <script>
+    const socket = io('http://localhost:3000');
+
+    socket.on('connect', () => {
+      console.log('Connected:', socket.id);
+      // apna tenantId yahan daalo
+      socket.emit('join-tenant', 'c1bbf24c-4a4a-4f6a-9d37-c853166fe9e0');
+    });
+
+    socket.on('low-stock-alert', (data) => {
+      console.log('LOW STOCK ALERT:', data);
+      document.getElementById('messages').innerHTML += `<p>${data.message}</p>`;
+    });
+  </script>
+</body>
+</html>
