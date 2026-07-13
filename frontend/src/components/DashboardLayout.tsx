@@ -225,6 +225,7 @@ useEffect(() => {
               width: '100%',
               padding: '10px 12px',
               background: 'rgba(255,255,255,0.1)',
+              maxWidth: '100%',
               border: 'none',
               borderRadius: 10,
               color: 'white',
@@ -260,11 +261,14 @@ useEffect(() => {
                 position: 'absolute',
                 top: '110%',
                 left: 0,
-                width: 260,
+                width: '100%',
+                maxWidth: 218,
                 maxHeight: 300,
                 overflowY: 'auto',
+                overflowX: 'hidden',
                 zIndex: 100,
                 padding: 10,
+                boxSizing: 'border-box',
               }}
             >
               {notifications.length === 0 ? (
