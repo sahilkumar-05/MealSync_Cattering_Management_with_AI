@@ -200,7 +200,7 @@ export default function MenusPage() {
           className="card"
           style={{
             marginBottom: 24,
-            background: 'linear-gradient(180deg, var(--success-bg) 0%, transparent 60%)',
+            background: 'linear-gradient(180deg, #c4ffe5f9 0%, #ffffff 99%,transparent 80%)',
             border: '1px solid var(--success-bg)',
           }}
         >
@@ -211,7 +211,7 @@ export default function MenusPage() {
                 height: 34,
                 borderRadius: 10,
                 background: 'var(--success-bg)',
-                color: ' #ff059f',
+                color: ' #00444f',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -576,8 +576,9 @@ export default function MenusPage() {
                   )}
                 </div>
               </div>
-
+ 
               {expandedMenuId === menu.id && (
+                
                 <table style={{ marginTop: 16 }}>
                   <thead>
                     <tr>
