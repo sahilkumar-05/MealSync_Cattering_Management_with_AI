@@ -217,7 +217,7 @@ export default function MealOrdersPage() {
           <div>No orders placed yet.</div>
         </div>
       ) : (
-        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+        <div className="card" style={{ padding: 0, overflow: 'scroll' }}>
           <table>
             <thead>
               <tr>
