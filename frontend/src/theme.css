@@ -82,6 +82,7 @@ body {
   padding: 22px;
   transition: var(--transition);
   animation: cardPop 0.4s ease backwards;
+  overflow: scroll;
 }
 
 .card:hover {
