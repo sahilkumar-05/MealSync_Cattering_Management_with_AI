@@ -7,7 +7,7 @@
   --secondary: #0f172a;
 
   background:
-radial-gradient(circle at top,#c8f1e3 0%,#f8fffe 45%,#dcffef 100%);
+radial-gradient(circle at top,#ccf9ea0b 0%,#f8fffe 45%,#dcffef 100%);
   --surface: #ffffff2c;
   --surface-hover: #77efd39a;
 
@@ -16,7 +16,7 @@ radial-gradient(circle at top,#c8f1e3 0%,#f8fffe 45%,#dcffef 100%);
 
   --border: #00000025;
 
-  --sidebar-bg: linear-gradient(180deg, #115e59 0%, #0f766e 50%, #14b8a6 100%);
+  --sidebar-bg: linear-gradient(180deg, #014d52 0%, #0f766e 50%, #14b892 100%);
   --sidebar-glass: rgba(15, 23, 42, 0.35);
 
   --success: #10b981;
@@ -53,9 +53,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 20% 20%, rgba(33, 255, 229, 0.082) 0%, transparent 50%),
+    radial-gradient(circle at 20% 20%, rgba(78, 255, 199, 0.162) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(14,165,233,0.2) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, #f0fdf9 0%, #e6fffa 100%);
+    radial-gradient(circle at 50% 50%, #046a4a33 0%, #e6fffa 100%);
   color: var(--text);
   font-family: "Inter", -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -70,15 +70,15 @@ body {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(236, 253, 253, 0.747);
+  border: 1px solid rgb(255, 255, 255);
   border-radius: var(--radius);
   box-shadow:
     0 8px 32px rgba(15, 23, 42, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
     inset 0 -1px 0 rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(60px) saturate(180%);
+  -webkit-backdrop-filter: blur(60px) saturate(180%);
   padding: 22px;
   transition: var(--transition);
   animation: cardPop 0.4s ease backwards;
