@@ -200,7 +200,7 @@ export default function MenusPage() {
           className="card"
           style={{
             marginBottom: 24,
-            background: 'linear-gradient(180deg, #c4ffe5f9 0%, #ffffff 99%,transparent 80%)',
+            background: '#3d7068',
             border: '1px solid var(--success-bg)',
           }}
         >
@@ -210,7 +210,7 @@ export default function MenusPage() {
                 width: 34,
                 height: 34,
                 borderRadius: 10,
-                background: 'var(--success-bg)',
+                background: '#fff',
                 color: ' #00444f',
                 display: 'flex',
                 alignItems: 'center',
@@ -221,8 +221,8 @@ export default function MenusPage() {
               <Sparkles size={17} className={generating ? 'spin-pulse' : ''} />
             </div>
             <div>
-              <h3 style={{ margin: 0, fontSize: 16 }}>Generate Weekly Menu with AI</h3>
-              <p style={{ margin: 0, fontSize: 12.5, color: 'var(--text-muted)' }}>
+              <h3 style={{ margin: 0, fontSize: 16, color: '#fff' }}>Generate Weekly Menu with AI</h3>
+              <p style={{ margin: 0, fontSize: 12.5, color: '#fff' }}>
                 Describe what you want, or just hit generate for a balanced default
               </p>
             </div>
