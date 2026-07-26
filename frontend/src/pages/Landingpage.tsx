@@ -418,15 +418,7 @@ export default function LandingPage() {
         </div>
 
         <nav style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <Link
-            to="/login"
-            style={{
-              fontFamily: 'var(--font-mono)', fontSize: 11, textTransform: 'uppercase',
-              letterSpacing: '0.2em', color: 'var(--text)', textDecoration: 'none', whiteSpace: 'nowrap',
-            }}
-          >
-            Log In
-          </Link>
+         
           <Link to="/register" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', whiteSpace: 'nowrap' }}>
             Get Started
           </Link>
