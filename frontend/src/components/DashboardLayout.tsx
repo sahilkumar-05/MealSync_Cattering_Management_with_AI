@@ -1,7 +1,9 @@
-import { Bell } from 'lucide-react';
+import {
+   Menu as MenuIcon, Bell,
+} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { connectSocket } from '../lib/socket';
+import { getSocket, connectSocket } from '../lib/socket';
 import { useNotificationStore } from '../store/notificationStore';
 import { useAuthStore } from '../store/authStore';
 import {
@@ -144,7 +146,7 @@ useEffect(() => {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(15, 23, 42, 0.5)',
+            background: 'rgba(28, 28, 28, 0.5)',
             zIndex: 40,
             transition: 'opacity 0.3s ease',
           }}
@@ -157,7 +159,7 @@ useEffect(() => {
           width: 250,
           flexShrink: 0,
           background: 'var(--sidebar-bg)',
-          color: 'white',
+          color: '#f7f6f2',
           padding: '24px 16px',
           display: 'flex',
           flexDirection: 'column',
@@ -165,10 +167,10 @@ useEffect(() => {
           top: 0,
           left: 0,
           height: '100vh',
-          boxShadow: 'var(--shadow-lg)',
+          borderRight: '1px solid rgba(247,246,242,0.1)',
           zIndex: 50,
           transform: isMobile ? (sidebarOpen ? 'translateX(0)' : 'translateX(-100%)') : 'none',
-          transition: 'transform 0.3s ease',
+          transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         {/* Brand */}
@@ -178,9 +180,9 @@ useEffect(() => {
               style={{
                 width: 34,
                 height: 34,
-                borderRadius: 10,
-                background: 'rgba(255,255,255,0.15)',
-                backdropFilter: 'blur(8px)',
+                borderRadius: 2,
+                border: '1px solid var(--primary)',
+                background: 'rgba(61, 112, 104, 0.2)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -189,7 +191,7 @@ useEffect(() => {
             >
               🥗
             </div>
-            <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: '-0.02em' }}>MealSync</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: '-0.01em' }}>MealSync</span>
           </div>
 
           {/* Close button - mobile only */}
@@ -197,15 +199,15 @@ useEffect(() => {
             <button
               onClick={() => setSidebarOpen(false)}
               style={{
-                background: 'rgba(255,255,255,0.1)',
-                border: 'none',
-                borderRadius: 8,
+                background: 'rgba(247,246,242,0.08)',
+                border: '1px solid rgba(247,246,242,0.15)',
+                borderRadius: 2,
                 width: 30,
                 height: 30,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'white',
+                color: '#f7f6f2',
                 cursor: 'pointer',
               }}
             >
@@ -224,13 +226,15 @@ useEffect(() => {
               gap: 8,
               width: '100%',
               padding: '10px 12px',
-              background: 'rgba(255,255,255,0.1)',
-              maxWidth: '100%',
-              border: 'none',
-              borderRadius: 10,
-              color: 'white',
+              background: 'transparent',
+              border: '1px solid rgba(247,246,242,0.15)',
+              borderRadius: 2,
+              color: '#f7f6f2',
               cursor: 'pointer',
-              fontSize: 13,
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              textTransform: 'uppercase',
+              letterSpacing: '0.15em',
             }}
           >
             <Bell size={16} />
@@ -244,6 +248,7 @@ useEffect(() => {
                   width: 18,
                   height: 18,
                   fontSize: 10,
+                  fontFamily: 'var(--font-mono)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -261,18 +266,15 @@ useEffect(() => {
                 position: 'absolute',
                 top: '110%',
                 left: 0,
-                width: '100%',
-                maxWidth: 218,
+                width: 260,
                 maxHeight: 300,
                 overflowY: 'auto',
-                overflowX: 'hidden',
                 zIndex: 100,
                 padding: 10,
-                boxSizing: 'border-box',
               }}
             >
               {notifications.length === 0 ? (
-                <p style={{ fontSize: 12, color: 'var(--text-muted)', margin: 8 }}>No notifications</p>
+                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(247,246,242,0.6)', margin: 8 }}>No notifications</p>
               ) : (
                 notifications.map((n) => (
                   <div
@@ -280,17 +282,17 @@ useEffect(() => {
                     style={{
                       padding: 8,
                       fontSize: 12,
-                      borderBottom: '1px solid var(--border)',
+                      borderBottom: '1px solid rgba(247,246,242,0.12)',
                       display: 'flex',
                       justifyContent: 'space-between',
                       gap: 6,
-                      color: 'var(--text)',
+                      color: '#f7f6f2',
                     }}
                   >
                     <span>{n.message}</span>
                     <button
                       onClick={() => dismissNotification(n.id)}
-                      style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
+                      style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'rgba(247,246,242,0.6)' }}
                     >
                       <X size={12} />
                     </button>
@@ -309,9 +311,9 @@ useEffect(() => {
             gap: 10,
             padding: '10px 8px',
             margin: '12px 0 22px',
-            borderRadius: 12,
-            background: 'rgba(255,255,255,0.1)',
-            backdropFilter: 'blur(8px)',
+            borderRadius: 2,
+            border: '1px solid rgba(247,246,242,0.12)',
+            background: 'rgba(247,246,242,0.04)',
           }}
         >
           <div
@@ -319,23 +321,24 @@ useEffect(() => {
               width: 32,
               height: 32,
               borderRadius: '50%',
-              background: 'rgba(255,255,255,0.9)',
+              background: '#f7f6f2',
               color: 'var(--primary-dark)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: 12,
-              fontWeight: 800,
+              fontFamily: 'var(--font-mono)',
+              fontWeight: 700,
               flexShrink: 0,
             }}
           >
             {initials}
           </div>
           <div style={{ overflow: 'hidden' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div style={{ fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {user?.name}
             </div>
-            <div style={{ fontSize: 11, opacity: 0.7, textTransform: 'capitalize' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
               {user?.role.replace('_', ' ')}
             </div>
           </div>
@@ -367,17 +370,26 @@ useEffect(() => {
             alignItems: 'center',
             gap: 8,
             padding: '10px 12px',
-            background: 'rgb(0, 95, 82)',
-            color: 'rgba(255,255,255,0.85)',
-            border: '1px solid rgba(2, 0, 0, 0.28)',
-            borderRadius: 10,
+            background: 'transparent',
+            color: '#f7f6f2',
+            border: '1px solid rgba(247,246,242,0.2)',
+            borderRadius: 2,
             cursor: 'pointer',
-            fontSize: 13,
-            fontWeight: 600,
+            fontFamily: 'var(--font-mono)',
+            fontSize: 11,
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.15em',
             transition: 'var(--transition)',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = 'rgb(255, 0, 0)')}
-          onMouseLeave={(e) => (e.currentTarget.style.background = 'rgb(0, 95, 82)')}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--danger)';
+            e.currentTarget.style.borderColor = 'var(--danger)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.borderColor = 'rgba(247,246,242,0.2)';
+          }}
         >
           <LogOut size={15} />
           Logout
@@ -409,7 +421,7 @@ useEffect(() => {
               style={{
                 background: 'var(--surface)',
                 border: '1px solid var(--border)',
-                borderRadius: 10,
+                borderRadius: 2,
                 width: 40,
                 height: 40,
                 display: 'flex',
@@ -421,8 +433,8 @@ useEffect(() => {
             >
               <Menu size={18} />
             </button>
-           
-           <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: '-0.02em' }}>MealSync</span>
+
+           <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: '-0.01em', color: 'var(--text)' }}>MealSync</span>
           </div>
         )}
 
