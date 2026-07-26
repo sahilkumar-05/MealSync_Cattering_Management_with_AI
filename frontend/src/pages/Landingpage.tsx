@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import {
-  ChefHat,
   Carrot,
   Users,
   ClipboardList,
@@ -191,7 +190,7 @@ export default function LandingPage() {
             border: '1px solid var(--border)',
           }}
         >
-          {MODULES.map((m, i) => {
+          {MODULES.map((m) => {
             const Icon = m.icon;
             return (
               <div
