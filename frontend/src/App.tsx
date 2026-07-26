@@ -14,7 +14,7 @@ import MenusPage from './pages/MenusPage';
 import ProcurementPage from './pages/ProcurementPage';
 import WastePage from './pages/WastePage';
 import MealOrdersPage from './pages/MealOrdersPage';
-import LandingPage from './pages/LandingPage';
+import Landingpage  from './pages/Landingpage ';
 function App() {
     const { token, tenantId } = useAuthStore();
 
@@ -27,7 +27,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Landingpage  />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
